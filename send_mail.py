@@ -1,3 +1,4 @@
+
 import smtplib
 import getpass
 import os
@@ -41,3 +42,7 @@ def email(host, trafficDataList,interval):
 	#This is where the email is sent
 	smtpObj.sendmail(msg['From'], msg['To'], msg.as_string())
 	smtpObj.quit()
+
+
+
+
