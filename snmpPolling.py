@@ -30,24 +30,7 @@ if __name__ == '__main__':
 	#makeTrafficList(1000,int(format(ip_rec)))		
 	while True:
 		timer = time.time()
-		i = 0
-		'''for agent in agentHosts:
-			i	p_rec, ip_del = get_datagrams(agentHosts[agent])
-			if running <2:
-				trafficDataList[i].makeTrafficList(1000,int(format(ip_rec)))
-				running += 1
-			else:
-				print("shit is running")				
-			print(format(ip_rec))
-			updateTrafficList(int(format(ip_rec)))
-		time.sleep(30)
-		if time.time()+10>timer:
-			graphname=timer
-			traffic = getTrafficList()
-			print("NIGGA")
-			#reset timer
-			timer=time.time()
-		'''
+
 		for agent in range(0,2):
 			ip_rec, ip_del = get_datagrams(agentHosts[agent])
 			if running <2:
@@ -61,12 +44,4 @@ if __name__ == '__main__':
 				timeSinceLastMail=time.time()
 				sendMail()
 		time.sleep(sampleInterval)	
-		'''#CHECK getSumOfTrafficList
-		if (((timer+10)>time.time())):
-			graphname=timer
-			traffic = trafficDataList[agent].getTrafficList()
-			print("NIGGA")
-			time.sleep(2)			
-			#reset timer
-			#timer=time.time()'''
 
