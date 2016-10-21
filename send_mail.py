@@ -16,7 +16,7 @@ def email(host, trafficDataList,interval):
 	#using the input taken as parameters
 	smtpObj = smtplib.SMTP(host='smtp.office365.com', port=587)
 	smtpObj.starttls()
-	smtpObj.login('duytt@ntnu.no', 'proCrastinate420')
+	smtpObj.login('duytt@ntnu.no', password=getpass.getpass(prompt='Enter your password:'))
 
 
 	msg = MIMEMultipart()
