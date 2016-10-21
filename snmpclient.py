@@ -1,6 +1,7 @@
 import time
 from pysnmp.entity.rfc3413.oneliner import ntforg, cmdgen #moduler fra pysnmp
 from moving_window_List_14 import *
+from plot import plot_graph1_4, readTrapLog #for å plotte graf
 
 
 #129.241.209.8
@@ -8,9 +9,9 @@ from moving_window_List_14 import *
 ntfOrg = ntforg.NotificationOriginator()
 cmdGen = cmdgen.CommandGenerator()
 HOST = 'localhost'
-THRESHOLD = 19000 #5Mbps youtube 1080p i 15 min, skal generere 5-10 traps, Faen dette er ikke riktig.......
+THRESHOLD = 100
 INTERVAL = 5 
-
+windowSize = 1000
 
 def get_datagrams(host='localhost', ipv6=False):
 #def get_datagrams(host):
@@ -49,9 +50,9 @@ def send_trap(ip_delivered, ip_received, host='localhost'):
 
 if __name__ == '__main__':
     initReceived, initDel = get_datagrams(HOST)
-    makeTrafficList(10,int(format(initReceived)))
+    makeTrafficList(windowSize,int(format(initReceived)))
     while True:
-        ip_received, ip_delivered = get_datagrams('129.241.209.16')#get_datagrams(HOST)
+        ip_received, ip_delivered = get_datagrams(HOST)
         updateTrafficList(int(format(ip_received)))
         print(getTrafficList())
         print(getSumOfTrafficList())
@@ -60,4 +61,5 @@ if __name__ == '__main__':
             send_trap(ip_received, ip_delivered, HOST)
             print('IP RECEIVED: {}'.format(ip_received))
             print('IP DELIVERED: {}'.format(ip_delivered))
+            plot_graph1_4(readTrapLog())
         time.sleep(INTERVAL)
