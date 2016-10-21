@@ -53,32 +53,3 @@ def updateMeasurements(newMeasurement):
   measurements.append(newMeasurement)
   #It is void
 
-'''
-##################TESTING####################
-makeTrafficList(10, 100000)
-print "sum"
-print getSumOfTrafficList()
-c1 = 0
-c2 = 15
-add = 20
-
-while c1 < c2:konso
-  print getSumOfTrafficList()
-  updateTrafficList(add)
-  c1+=1
-  add += 5
-print getTrafficList()
-
-add -= 5
-updateTrafficList(add)
-add -= 5
-updateTrafficList(add)
-print getSumOfTrafficList()
-
-
-print getTrafficList()
-
-
-
-###############TESTING END #####################
-'''
