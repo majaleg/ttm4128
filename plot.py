@@ -7,12 +7,12 @@ import re
 
 
 
-#Omgjør sekunder til dato
+#Converts from seconds to date
 def secondsToDate(sec):
 	return date.datetime.fromtimestamp(sec).strftime('%Y-%m-%d %H:%M:%S')
 
 
-##OPPG. 1.4
+## 1.4
 def readTrapLog():
 	trapLog = open("/home/tin/.snmp/log.txt", "r+")
 	lines = trapLog.readlines()
@@ -30,8 +30,8 @@ def readTrapLog():
 
 
 
-#plotter på array input
-#lagrer plott på timestamp som navn
+#Plots the array input
+#Generate the plot using the graph "timestamp"
 def plot_graph1_4(array): 
     x = [i for i in range(len(array))]
 
@@ -48,11 +48,11 @@ def plot_graph1_4(array):
 
 
 
-#Oppgave 1.5
+##  1.5
 def plot_graph(host,timestamp, array, INTERVAL): 
     timestampAkse = [0 for i in range(len(array))]
     x = [i for i in range(len(array))]
-    #Lager tidsverdier til x-aksen for grafen basert på når thresholdtime nådd
+    #Generates the time values for the x-axis of the graph based on when the threshold time has been reached
     for i in range(0,len(array)):
         timestampAkse[i]=secondsToDate(timestamp-(len(array)-(i+1))*INTERVAL)
 
