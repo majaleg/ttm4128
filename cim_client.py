@@ -29,5 +29,3 @@ get_ip_interfaces()
 #IP interfaces
 
 
-
-
