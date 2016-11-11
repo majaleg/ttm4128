@@ -25,7 +25,4 @@ def get_ip_interfaces():
 	return interface_info
 
 
-get_ip_interfaces()
-#IP interfaces
-
 
