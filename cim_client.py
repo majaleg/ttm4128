@@ -2,8 +2,6 @@ import pywbem
 
 conn = pywbem.WBEMConnection('http://ttm4128.item.ntnu.no:5988/cimom')
 
-#processes = conn.EnumerateInstances('CIM_Process')
-#print processes[0].items()
 
 #Gets OS Version
 def get_OS_info():
@@ -12,6 +10,7 @@ def get_OS_info():
 	print os_version
 	return os_version
 
+#Get Interface info: name, ipaddress and network mask
 def get_ip_interfaces():
 	interface_info=[]
 	interfaces = conn.EnumerateInstances('CIM_IPProtocolEndpoint')
