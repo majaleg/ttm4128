@@ -6,7 +6,20 @@
 	<body>
 		<div class="container">
 		{% block body %}
+			
 		{% endblock %}		
+
+
+	<h2>OS information</h2>
+	<p>{{ os }}</p>
+
+
+	<h2>INTERFACE information</h2>
+	{% autoescape false %}
+	<p>{{ interfaces }}</p>
+	{% endautoescape %}	
+
+
 		</div>
 	</body
 
