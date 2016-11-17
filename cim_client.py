@@ -23,8 +23,7 @@ def get_ip_interfaces():
 			'subnet_mask':	interface['subnetmask']
 		}) 		
 	return interface_info
-def test():
-	return "aasldjfalskdjflkj"
+
 
 get_OS_info()
 
