@@ -7,7 +7,7 @@ conn = pywbem.WBEMConnection('http://ttm4128.item.ntnu.no:5988/cimom')
 def get_OS_info():
 	os = conn.EnumerateInstances('CIM_OperatingSystem')[0]
 	os_version = os['Version']
-	print os_version
+	#print os_version
 	return os_version
 
 #Get Interface info: name, ipaddress and network mask
@@ -23,6 +23,10 @@ def get_ip_interfaces():
 			'subnet_mask':	interface['subnetmask']
 		}) 		
 	return interface_info
+def test():
+	return "aasldjfalskdjflkj"
+
+get_OS_info()
 
 
 
