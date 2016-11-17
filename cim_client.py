@@ -16,7 +16,7 @@ def get_ip_interfaces():
 	interfaces = conn.EnumerateInstances('CIM_IPProtocolEndpoint')
 	#print interfaces.items()
 	for interface in interfaces:
-		print interface['Name']+interface['ipv4address']+interface['subnetmask']
+		#print interface['Name']+interface['ipv4address']+interface['subnetmask']
 		interface_info.append({
 			'name':		interface['Name'],
 			'ip_address':	interface['ipv4address'],
@@ -25,7 +25,6 @@ def get_ip_interfaces():
 	return interface_info
 
 
-get_OS_info()
 
 
 
