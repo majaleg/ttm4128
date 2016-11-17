@@ -38,7 +38,7 @@ def plot_graph1_4(array):
     x = [i for i in range(len(array))]
 
     plt.plot(x, array)
-    plt.xlabel('måling nummer')
+    plt.xlabel('maaling nummer')
     plt.ylabel('antall pakker i denne perioden')
     plt.title("Output i trap loggen")
     plt.grid(True)
@@ -60,7 +60,7 @@ def plot_graph(host,timestamp, array, INTERVAL):
 
     #plt.xticks(x, timestampAkse)
     plt.plot(x, array)
-    plt.xlabel('måling nummer')
+    plt.xlabel('maaling nummer')
     plt.ylabel('antall pakker i denne perioden')
     plt.title(host)
     plt.grid(True)
