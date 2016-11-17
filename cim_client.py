@@ -1,5 +1,5 @@
 import pywbem 
-
+#PyWBEM represents CIM objects in a generic way.
 conn = pywbem.WBEMConnection('http://ttm4128.item.ntnu.no:5988/cimom')
 
 
