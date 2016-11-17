@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from cim_client import *
+from snmpclient import get_snmp_os, get_snmp_interface
 
 
 app = Flask(__name__)
@@ -10,6 +11,8 @@ app = Flask(__name__)
 #def hello():
 #        return render_template('cim.html')
 
+
+
 #-------------- CIM Section -----------------------------------
 @app.route("/cim_info")
 def get_cim_info():
@@ -18,6 +21,24 @@ def get_cim_info():
 	#get appropriate interface data from cim_client and format it
 	interfaces = formatIP(get_ip_interfaces())
 	return render_template('cim.html', os=os, interfaces=interfaces)
+
+
+#-------------- END CIM Section --------------------------------
+
+
+
+
+
+#-------------- SNMP Section -----------------------------------
+@app.route("/snmp_info")
+def get_snmp_info():
+	os = get_snmp_os()
+	interfaces = formatIP(get_snmp_interface())
+	print(formatIP(get_snmp_interface()))
+	return render_template('snmp.html', os=os, interfaces=interfaces)
+
+
+#-------------- END SNMP Section -------------------------------
 
 
 #Formats output from interfaces
@@ -30,17 +51,7 @@ def formatIP(interfaces):
 		outputString+="<br>"
 	return outputString
 
-#-------------- END CIM Section --------------------------------
 
-#-------------- SNMP Section -----------------------------------
-@app.route("/snmp_info")
-def get_snmp_info():
-	return null
-
-
-
-
-#-------------- END SNMP Section -------------------------------
 @app.route("/")
 def index():
 	return render_template('layout.html')
