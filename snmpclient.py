@@ -2,6 +2,7 @@ import time
 from pysnmp.entity.rfc3413.oneliner import ntforg, cmdgen #modules from pysnmp
 from moving_window_List_14 import *
 from plot import plot_graph1_4, readTrapLog #tused to plot the graph 
+from pysnmp.hlapi import nextCmd, SnmpEngine, CommunityData, UdpTransportTarget, ContextData, ObjectType, ObjectIdentity
 
 #Variables used in the class are all given here
 ntfOrg = ntforg.NotificationOriginator()
@@ -37,6 +38,46 @@ def send_trap(ip_delivered, ip_received, host='localhost'):
         (ntforg.MibVariable('IP-MIB', 'ipInReceives'), ip_received),
         (ntforg.MibVariable('IP-MIB', 'ipInDelivers',), ip_delivered)
     )
+
+###------------------------- LAB2 Section ---------------------------
+def get_snmp_os(host='localhost'):
+	errorIndication, errorStatus, errorIndex, varBinds = cmdGen.getCmd(
+		cmdgen.CommunityData('ttm4128'),
+		cmdgen.UdpTransportTarget((host, 161)),
+    		cmdgen.MibVariable('SNMPv2-MIB', 'sysDescr', 0),
+	        lookupNames=True, lookupValues=True
+    	)
+	os_info = varBinds[0][1]
+	return str(os_info)
+
+
+def get_snmp_interface(host='localhost'):
+	counter = 0
+	interface_info=[]
+	value=[]
+	for (errorIndication,errorStatus,errorIndex,varBinds) in nextCmd(SnmpEngine(),
+		CommunityData('public', mpModel=0),
+		UdpTransportTarget(('demo.snmplabs.com', 161)),
+		ContextData(),
+		ObjectType(ObjectIdentity('IF-MIB', 'ifDescr')),
+		ObjectType(ObjectIdentity('IP-MIB', 'ipAdEntAddr')),
+		ObjectType(ObjectIdentity('IP-MIB', 'ipAdEntNetMask')),
+		lexicographicMode=False):
+		for interface in varBinds:
+			value.append(str(interface).split(" = ")[1])
+			if counter !=0 and (counter+1)%3==0:
+				interface_info.append({
+					'name':		value[0],
+					'ip_address':	value[1],
+					'subnet_mask':	value[2]
+				})
+				value=[]
+			counter+=1
+
+	return interface_info
+
+
+###------------------------- END LAB2 Section -----------------------
 
 
 if __name__ == '__main__':
