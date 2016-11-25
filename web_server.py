@@ -5,11 +5,13 @@ from snmpclient import get_snmp_os, get_snmp_interface
 
 app = Flask(__name__)
 
+#Creates a http endpoint 
 #url/endpoint for loading page: usually localhost:PORT/<<app.route(link)>>
 #@app.route("/cim_info")
-#e.g. http://127.0.0.1:5000/cim_info
 #def hello():
 #        return render_template('cim.html')
+#
+#This creates an endpoint on e.g. http://127.0.0.1:5000/cim_info
 
 
 
