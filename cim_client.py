@@ -1,5 +1,6 @@
 import pywbem 
 #PyWBEM represents CIM objects in a generic way.
+
 #creates a connection to the WBEM server as an instance of the WBEMConnection Python class.
 conn = pywbem.WBEMConnection('http://ttm4128.item.ntnu.no:5988/cimom')
 
