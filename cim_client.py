@@ -1,9 +1,11 @@
 import pywbem 
 #PyWBEM represents CIM objects in a generic way.
+#creates a connection to the WBEM server as an instance of the WBEMConnection Python class.
 conn = pywbem.WBEMConnection('http://ttm4128.item.ntnu.no:5988/cimom')
 
 
 #Gets OS Version
+#The EnumerateInstances() method returns a list of CIMInstance objects and subclasses. We are interested in the OS Version
 def get_OS_info():
 	os = conn.EnumerateInstances('CIM_OperatingSystem')[0]
 	os_version = os['Version']
